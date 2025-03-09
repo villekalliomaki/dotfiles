@@ -44,7 +44,7 @@
         3. Greeter: ly
     10. Audio: Pipewire
     11. Kernels: linux and linux-lts
-    12. Additional packages: firefox, alacritty, ansible
+    12. Additional packages: firefox, alacritty, ansible, git
     13. Network: use NetworkManager
     14. Timezone: Europe/Helsinki
     15. NTP: true
@@ -60,3 +60,12 @@
 
 ## Customizations
 
+Some manual steps are required to run automated Ansible installation.
+
+1. Migrate existing SSH key to the new machine (only private key required)
+    1. `mkdir ~/.ssh`
+    2. `chmod 700 ~/.ssh`
+    3. Paste private key: `vim ~/.ssh/id_rsa`
+    4. `chmod 600 ~/.ssh/id_rsa`
+    5. `ssh-keygen -f ~/.ssh/id_rsa -y > ~/.ssh/id_rsa.pub`
+2. Clone this repository to `~/dotfiles`
