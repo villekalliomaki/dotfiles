@@ -1,0 +1,16 @@
+- name: Install internal certificate authority
+  hosts: localhost
+
+  tasks:
+    - name: Copy homelab root CA certificate
+      become: true
+      ansible.builtin.copy:
+        src: ../secrets/1fi.fi.crt
+        dest: ~/1fi.fi.crt
+        mode: u=rw
+
+    - name: Enable CA cert
+      # Just ignore the error
+      changed_when: true
+      become: true
+      ansible.builtin.command: trust anchor ~/1fi.fi.crt

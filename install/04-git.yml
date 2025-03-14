@@ -1,0 +1,8 @@
+- name: Configure git
+  hosts: localhost
+
+  tasks:
+    - name: Set git global username
+      community.general.git_config:
+        name: user.name
+        value: villekalliomaki

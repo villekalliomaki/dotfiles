@@ -1,0 +1,37 @@
+- name: Install wireguard config and enable service
+  hosts: localhost
+
+  tasks:
+    - name: Copy config matching hostname
+      become: true
+      ansible.builtin.copy:
+        src: "../secrets/wg/{{ ansible_hostname }}/wg0.conf"
+        dest: /etc/wireguard/wg0.conf
+        mode: u=rw
+
+    - name: Enable and start wg0
+      become: true
+      ansible.builtin.systemd_service:
+        name: wg-quick@wg0
+        state: started
+        enabled: true
+
+    - name: Make sure /etc/dhcp exists
+      become: true
+      ansible.builtin.file:
+        path: "/etc/dhcp"
+        state: directory
+        mode: u=rwx
+
+    - name: Always use private DNS as the primary over wireguard
+      become: true
+      ansible.builtin.copy:
+        dest: "/etc/dhcp/dhclient.conf"
+        content: "prepend domain-name-servers 10.1.1.2;"
+        mode: u=rwx
+
+    - name: Restart NetworkManager for changes
+      become: true
+      ansible.builtin.systemd:
+        unit: NetworkManager
+        state: restarted

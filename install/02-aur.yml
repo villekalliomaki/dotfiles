@@ -1,0 +1,48 @@
+- name: Install yay and AUR packages
+  hosts: localhost
+
+  tasks:
+    - name: Clone yay repository # noqa latest[git]
+      ansible.builtin.git:
+        clone: true
+        update: true
+        repo: https://aur.archlinux.org/yay.git
+        dest: /tmp/yay
+
+    # https://github.com/DoTheEvo/ansible-arch/blob/cf3d0ea6ccaa4cbf6196f35327ffcb298d913e78/playbook_core.yml#L60
+    - name: Disable sudo password prompt temporarily for pacman
+      become: true
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers.d/temp_allow_no_password_pacman
+        state: present
+        line: "ALL ALL=NOPASSWD: /usr/bin/pacman"
+        validate: /usr/sbin/visudo -cf %s
+        mode: "0440"
+        create: true
+
+    # https://github.com/DoTheEvo/ansible-arch/blob/cf3d0ea6ccaa4cbf6196f35327ffcb298d913e78/playbook_core.yml#L75C5-L81C45
+    # Python module "pexpect" required for this:
+    #   sudo pacman -S python-pexpect
+    - name: Install yay using makepkg
+      ansible.builtin.expect:
+        chdir: /tmp/yay
+        command: makepkg -si
+        timeout: 300
+        responses:
+          (?i)Proceed with installation: "y"
+
+    - name: Install packages from AUR (might take a while)
+      kewlfft.aur.aur:
+        use: yay
+        update_cache: true
+        name:
+          - vscodium
+          - darktable
+          - pwvucontrol
+
+    # https://github.com/DoTheEvo/ansible-arch/blob/cf3d0ea6ccaa4cbf6196f35327ffcb298d913e78/playbook_core.yml#L83C5-L86C22
+    - name: Re-enable sudo password prompt
+      become: true
+      ansible.builtin.file:
+        path: /etc/sudoers.d/temp_allow_no_password_pacman
+        state: absent

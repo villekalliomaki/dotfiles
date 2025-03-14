@@ -1,0 +1,16 @@
+- name: Install and enable syncthing
+  hosts: localhost
+
+  tasks:
+    - name: Make sure syncthing is installed
+      become: true
+      community.general.pacman:
+        package:
+          - syncthing
+
+    - name: Enable and start syncthing service for current user
+      ansible.builtin.systemd_service:
+        state: started
+        enabled: true
+        service: syncthing.service
+        scope: user

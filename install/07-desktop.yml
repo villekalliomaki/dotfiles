@@ -1,0 +1,46 @@
+- name: Install desktop configs
+  hosts: localhost
+
+  tasks:
+    - name: Copy config directory structure
+      with_community.general.filetree: "{{ playbook_dir }}/../configs"
+      when: item.state == "directory"
+      ansible.builtin.file:
+        path: "~/.config/{{ item.path }}"
+        state: directory
+        mode: u=rwx
+
+    - name: Generate config file templates
+      with_community.general.filetree: "{{ playbook_dir }}/../configs"
+      when: item.state == "file" and item.path | splitext | last == ".j2"
+      ansible.builtin.template:
+        src: "{{ item.src }}"
+        dest: "~/.config/{{ item.path | splitext | first }}"
+        mode: u=rwx
+
+    - name: Copy regular config files
+      with_community.general.filetree: "{{ playbook_dir }}/../configs"
+      when: item.state == "file" and item.path | splitext | last != ".j2"
+      ansible.builtin.copy:
+        src: "{{ item.src }}"
+        dest: "~/.config/{{ item.path }}"
+        mode: u=rwx
+
+    - name: Install fonts
+      become: true
+      community.general.pacman:
+        package:
+          - ttf-firacode-nerd
+          - ttf-nerd-fonts-symbols
+          - noto-fonts
+
+    - name: Install desktop related packages
+      become: true
+      community.general.pacman:
+        package:
+          - waybar
+          - hyprpaper
+          - hypridle
+          - hyprlock
+          - hyprsunset
+          - brightnessctl

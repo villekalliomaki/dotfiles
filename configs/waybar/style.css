@@ -1,0 +1,52 @@
+@define-color foreground #f2f2f2;
+@define-color foreground-inactive #bfbfbf;
+@define-color background rgba(0, 0, 0, .7);
+@define-color background-alt #262626;
+
+* {
+  font-family: FiraCode Nerd Font;
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+}
+
+#waybar {
+  color: @foreground;
+  background-color: @background;
+  opacity: 0.9;
+}
+
+#workspaces button {
+  color: @foreground;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+#workspaces button.empty {
+  color: @foreground-inactive;
+}
+
+#workspaces button.active {
+  background-color: @background-alt;
+  color: @foreground;
+  border-radius: 4px;
+}
+
+#wireplumber,
+#bat,
+#tray,
+#usage,
+#net {
+  background-color: @background-alt;
+  border-radius: 4px;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  margin-left: 0.3em;
+}
+
+#battery,
+#memory,
+#language,
+#network {
+  margin-right: 0.8em;
+}

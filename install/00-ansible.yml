@@ -1,0 +1,8 @@
+- name: Meta tasks to prepare local Ansible installation
+  hosts: localhost
+
+  tasks:
+    - name: Install Ansible package to interact with yay
+      community.general.ansible_galaxy_install:
+        type: collection
+        name: kewlfft.aur

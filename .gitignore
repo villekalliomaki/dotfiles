@@ -1,3 +1,4 @@
 /secrets
+/dotfiles_secrets
 __pycache__
 .ansible

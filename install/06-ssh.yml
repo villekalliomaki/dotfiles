@@ -1,0 +1,9 @@
+- name: Install SSH config (and/or keys) for user
+  hosts: localhost
+
+  tasks:
+    - name: Copy client config
+      ansible.builtin.copy:
+        src: ../secrets/ssh/config
+        dest: ~/.ssh/config
+        mode: "0600"
