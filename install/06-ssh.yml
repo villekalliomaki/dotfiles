@@ -2,8 +2,8 @@
   hosts: localhost
 
   tasks:
-    - name: Copy client config
-      ansible.builtin.copy:
-        src: ../secrets/ssh/config
-        dest: ~/.ssh/config
-        mode: "0600"
+      - name: Copy client config
+        ansible.builtin.copy:
+            src: ../secrets/ssh/config
+            dest: ~/.ssh/config
+            mode: "0600"

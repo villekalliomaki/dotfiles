@@ -4,32 +4,32 @@
 @define-color background-alt #262626;
 
 * {
-  font-family: FiraCode Nerd Font;
-  font-size: 14px;
-  padding: 0;
-  margin: 0;
+    font-family: FiraCode Nerd Font;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
 }
 
 #waybar {
-  color: @foreground;
-  background-color: @background;
-  opacity: 0.9;
+    color: @foreground;
+    background-color: @background;
+    opacity: 0.9;
 }
 
 #workspaces button {
-  color: @foreground;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
+    color: @foreground;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
 }
 
 #workspaces button.empty {
-  color: @foreground-inactive;
+    color: @foreground-inactive;
 }
 
 #workspaces button.active {
-  background-color: @background-alt;
-  color: @foreground;
-  border-radius: 4px;
+    background-color: @background-alt;
+    color: @foreground;
+    border-radius: 4px;
 }
 
 #wireplumber,
@@ -37,16 +37,31 @@
 #tray,
 #usage,
 #net {
-  background-color: @background-alt;
-  border-radius: 4px;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  margin-left: 0.3em;
+    background-color: @background-alt;
+    border-radius: 4px;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    margin-left: 0.3em;
 }
 
 #battery,
 #memory,
 #language,
 #network {
-  margin-right: 0.8em;
+    margin-right: 0.8em;
+}
+
+@keyframes blink {
+    to {
+        color: black;
+        background-color: red;
+    }
+}
+
+#battery.critical {
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }

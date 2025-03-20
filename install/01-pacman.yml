@@ -2,15 +2,16 @@
   hosts: localhost
 
   tasks:
-    - name: Pacman base packages
-      become: true
-      community.general.pacman:
-        package:
-          - wireguard-tools
-          - ansible-core
-          - ansible-lint
-          - ansible
-          - syncthing
-          - python-pexpect
-          - zip
-          - unzip
+      - name: Pacman base packages
+        become: true
+        community.general.pacman:
+            package:
+                - wireguard-tools
+                - ansible-core
+                - ansible-lint
+                - ansible
+                - syncthing
+                - python-pexpect
+                - zip
+                - unzip
+                - inotify-tools

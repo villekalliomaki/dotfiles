@@ -2,17 +2,17 @@
   hosts: localhost
 
   tasks:
-    - name: Install bluez
-      become: true
-      community.general.pacman:
-        package:
-          - bluez
-          - bluez-utils
-          - bluetui
+      - name: Install bluez
+        become: true
+        community.general.pacman:
+            package:
+                - bluez
+                - bluez-utils
+                - bluetui
 
-    - name: Enable bluetooth service
-      become: true
-      ansible.builtin.systemd:
-        service: bluetooth.service
-        state: started
-        enabled: true
+      - name: Enable bluetooth service
+        become: true
+        ansible.builtin.systemd:
+            service: bluetooth.service
+            state: started
+            enabled: true
