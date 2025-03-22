@@ -1,0 +1,41 @@
+- name: Configure shell
+  hosts: localhost
+
+  vars:
+      ohmyzsh_script_path: ~/.config/ohmyzsh_install.sh
+
+  tasks:
+      - name: Set user shell to zsh
+        become: true
+        ansible.builtin.user:
+            name: "{{ ansible_user_id }}"
+            shell: /bin/zsh
+
+      - name: Check if ~/.oh-my-zsh exists
+        ansible.builtin.stat:
+            path: ~/.oh-my-zsh exists
+        register: ohmyzsh_repository
+
+      - name: Download ohmyzsh install script
+        when: ohmyzsh_repository.stat.isdir is defined and ohmyzsh_repository.stat.isdir
+        ansible.builtin.get_url:
+            url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+            dest: "{{ ohmyzsh_script_path }}"
+            mode: "0755"
+
+      - name: Install ohmyzsh
+        when: ohmyzsh_repository.stat.isdir is defined and ohmyzsh_repository.stat.isdir
+        ansible.builtin.script:
+            cmd: "{{ ohmyzsh_script_path }}"
+
+      - name: Clone theme repository
+        ansible.builtin.git:
+            repo: https://github.com/sindresorhus/pure.git
+            dest: ~/.zsh/pure
+            version: main
+
+      - name: Copy ZSH config
+        ansible.builtin.copy:
+            src: ../configs/.zshrc
+            dest: ~/.zshrc
+            mode: u=rwx

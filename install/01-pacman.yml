@@ -6,6 +6,7 @@
         become: true
         community.general.pacman:
             package:
+                - zsh
                 - wireguard-tools
                 - ansible-core
                 - ansible-lint
@@ -15,3 +16,4 @@
                 - zip
                 - unzip
                 - inotify-tools
+                - android-tools

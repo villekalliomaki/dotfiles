@@ -20,7 +20,7 @@
         become: true
         ansible.builtin.copy:
             dest: "/etc/NetworkManager/conf.d/dns-servers.conf"
-            content: "[global-dns-domain-*]\nservers=10.1.1.2"
+            content: "[global-dns-domain-*]\nservers=10.1.1.2,1.1.1.1,8.8.8.8"
             mode: u=rw
 
       - name: Restart NetworkManager for changes

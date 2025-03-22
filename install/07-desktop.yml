@@ -3,7 +3,7 @@
 
   tasks:
       - name: Copy config directory structure
-        with_community.general.filetree: "{{ playbook_dir }}/../configs"
+        with_community.general.filetree: "{{ playbook_dir }}/../config_templates"
         when: item.state == "directory"
         ansible.builtin.file:
             path: "~/.config/{{ item.path }}"
@@ -11,7 +11,7 @@
             mode: u=rwx
 
       - name: Generate config file templates
-        with_community.general.filetree: "{{ playbook_dir }}/../configs"
+        with_community.general.filetree: "{{ playbook_dir }}/../config_templates"
         when: item.state == "file" and item.path | splitext | last == ".j2"
         ansible.builtin.template:
             src: "{{ item.src }}"
@@ -19,7 +19,7 @@
             mode: u=rwx
 
       - name: Copy regular config files
-        with_community.general.filetree: "{{ playbook_dir }}/../configs"
+        with_community.general.filetree: "{{ playbook_dir }}/../config_templates"
         when: item.state == "file" and item.path | splitext | last != ".j2"
         ansible.builtin.copy:
             src: "{{ item.src }}"
