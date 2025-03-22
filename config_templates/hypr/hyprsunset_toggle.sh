@@ -11,7 +11,7 @@ if pgrep hyprsunset >/dev/null; then
     fi
 else
     if [ "$1" = "toggle" ]; then
-        hyprsunset &
+        hyprsunset --temperature 5000 &
         notify-send -t 700 "Hyprsunset started"
         echo "Hyprsunset toggle: started"
         pkill -SIGRTMIN+10 waybar

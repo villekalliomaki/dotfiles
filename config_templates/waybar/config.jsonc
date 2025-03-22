@@ -6,7 +6,7 @@
 
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["wireplumber", "group/bat", "group/net", "tray"],
+  "modules-right": ["wireplumber", "battery", "backlight", "group/net", "tray"],
 
   "group/usage": {
     "orientation": "horizontal",

@@ -23,32 +23,26 @@
 }
 
 #workspaces button.empty {
-    color: @foreground-inactive;
+    font-weight: normal;
 }
 
 #workspaces button.active {
-    background-color: @background-alt;
-    color: @foreground;
-    border-radius: 4px;
+    font-weight: bold;
 }
 
 #wireplumber,
 #bat,
 #tray,
 #usage,
-#net {
-    background-color: @background-alt;
-    border-radius: 4px;
+#net,
+#battery {
     padding-left: 0.5em;
     padding-right: 0.5em;
-    margin-left: 0.3em;
 }
 
-#battery,
-#memory,
-#language,
 #network {
     margin-right: 0.8em;
+    margin-left: 1em;
 }
 
 @keyframes blink {
