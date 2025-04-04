@@ -30,6 +30,10 @@
     font-weight: bold;
 }
 
+#workspaces button:hover {
+    color: @background;
+}
+
 #wireplumber,
 #bat,
 #tray,
