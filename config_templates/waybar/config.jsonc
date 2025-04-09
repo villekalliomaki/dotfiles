@@ -1,90 +1,105 @@
 {
-  "layer": "top",
-  "position": "top",
-  "height": 20,
-  "spacing": 5,
+    "layer": "top",
+    "position": "top",
+    "height": 20,
+    "spacing": 5,
 
-  "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["clock"],
-  "modules-right": ["wireplumber", "battery", "backlight", "group/net", "tray"],
-
-  "group/usage": {
-    "orientation": "horizontal",
-    "modules": ["memory", "temperature"]
-  },
-
-  "group/bat": {
-    "orientation": "horizontal",
-    "modules": ["battery", "backlight"]
-  },
-
-  "group/net": {
-    "orientation": "horizontal",
-    "modules": ["network", "bluetooth"]
-  },
-
-  "hyprland/workspaces": {
-    "format": "{name}",
-    "on-click": "activate",
-    "sort-by-number": true
-  },
-
-  "clock": {
-    "format": "{:%H:%M (%d.%m.%Y)}"
-  },
-
-  "wireplumber": {
-    "format": "\udb81\udd7e {volume}%",
-    "format-muted": "\udb81\udf5f",
-    "max-volume": 100,
-    "scroll-step": 1
-  },
-
-  "battery": {
-    "bat": "BAT0",
-    "interval": 60,
-    "format": "{icon} {capacity}%",
-    "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
-    "states": {
-        "critical": 15
-    }
-  },
-
-  "backlight": {
-    "format": "\udb80\udcdf {percent}%",
-    "on-click": "~/.config/hypr/hyprsunset_toggle.sh toggle"
-  },
-
-  "network": {
-    "format": "",
-    "format-ethernet": "\udb83\udc9d",
-    "format-wifi": "{icon} ",
-    "format-disconnected": "\udb83\udc9c",
-    "format-icons": [
-      "\udb82\udd2f",
-      "\udb82\udd1f",
-      "\udb82\udd22",
-      "\udb82\udd25",
-      "\udb82\udd28"
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": [
+        "idle_inhibitor",
+        "wireplumber",
+        "battery",
+        "backlight",
+        "group/net",
+        "tray"
     ],
-    "tooltip-format-wifi": "{essid} ({signalStrength}%)",
-    "tooltip-format-ethernet": "{ifname}",
-    "tooltip-format-disconnected": "Disconnected",
-    "on-click": "alacritty -e nmtui"
-  },
 
-  "bluetooth": {
-    "format": "\udb80\udcaf",
-    "format-disabled": "\udb80\udcb2",
-    "format-connected": "\udb80\udcb1",
-    "tooltip-format": "{controller_alias}\t{controller_address}",
-    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    "on-click": "alacritty -e bluetui"
-  },
+    "group/usage": {
+        "orientation": "horizontal",
+        "modules": ["memory", "temperature"]
+    },
 
-  "tray": {
-    "icon-size": 16,
-    "spacing": 16
-  }
+    "group/bat": {
+        "orientation": "horizontal",
+        "modules": ["battery", "backlight"]
+    },
+
+    "group/net": {
+        "orientation": "horizontal",
+        "modules": ["network", "bluetooth"]
+    },
+
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "on-click": "activate",
+        "sort-by-number": true
+    },
+
+    "clock": {
+        "format": "{:%H:%M (%d.%m.%Y)}"
+    },
+
+    "wireplumber": {
+        "format": "\udb81\udd7e {volume}%",
+        "format-muted": "\udb81\udf5f",
+        "max-volume": 100,
+        "scroll-step": 1
+    },
+
+    "battery": {
+        "bat": "BAT0",
+        "interval": 60,
+        "format": "{icon} {capacity}%",
+        "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
+        "states": {
+            "critical": 15
+        }
+    },
+
+    "backlight": {
+        "format": "\udb80\udcdf {percent}%",
+        "on-click": "~/.config/hypr/hyprsunset_toggle.sh toggle"
+    },
+
+    "network": {
+        "format": "",
+        "format-ethernet": "\udb83\udc9d",
+        "format-wifi": "{icon} ",
+        "format-disconnected": "\udb83\udc9c",
+        "format-icons": [
+            "\udb82\udd2f",
+            "\udb82\udd1f",
+            "\udb82\udd22",
+            "\udb82\udd25",
+            "\udb82\udd28"
+        ],
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": "{ifname}",
+        "tooltip-format-disconnected": "Disconnected",
+        "on-click": "alacritty -e nmtui"
+    },
+
+    "bluetooth": {
+        "format": "\udb80\udcaf",
+        "format-disabled": "\udb80\udcb2",
+        "format-connected": "\udb80\udcb1",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "on-click": "alacritty -e bluetui"
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 16
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "\udb81\udcb3",
+            "deactivated": "\udb81\udcb2"
+        }
+    }
 }

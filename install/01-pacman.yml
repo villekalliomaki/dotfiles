@@ -17,3 +17,6 @@
                 - unzip
                 - inotify-tools
                 - android-tools
+                - wl-clipboard
+                - imv
+                - vlc

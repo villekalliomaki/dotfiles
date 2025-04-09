@@ -26,6 +26,8 @@
 # See https://wiki.hyprland.org/Configuring/Monitors/
 {% if ansible_hostname == "rend" %}
 monitor = eDP-1, preferred, auto, 1.8
+{% elif ansible_hostname == "elwell" %}
+monitor = DP-1, 3840x2160@60, auto, 2
 {% else %}
 monitor = , preferred, auto, auto
 {% endif %}
