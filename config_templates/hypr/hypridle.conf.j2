@@ -17,18 +17,40 @@ listener {
 #    on-resume = brightnessctl -rd platform::kbd_backlight        # turn on keyboard backlight.
 #}
 
+{% if ansible_hostname == "elwell" %}
+listener {
+    timeout = 3600                                # 60min
+    on-timeout = loginctl lock-session            # lock screen when timeout has passed
+}
+{% else %}
 listener {
     timeout = 600                                 # 10min
     on-timeout = loginctl lock-session            # lock screen when timeout has passed
 }
+{% endif %}
 
+{% if ansible_hostname == "elwell" %}
+listener {
+    timeout = 1800                                # 30min
+    on-timeout = hyprctl dispatch dpms off        # screen off when timeout has passed
+    on-resume = hyprctl dispatch dpms on          # screen on when activity is detected after timeout has fired.
+}
+{% else %}
 listener {
     timeout = 300                                 # 5min
     on-timeout = hyprctl dispatch dpms off        # screen off when timeout has passed
     on-resume = hyprctl dispatch dpms on          # screen on when activity is detected after timeout has fired.
 }
+{% endif %}
 
+{% if ansible_hostname == "elwell" %}
+listener {
+    timeout = 7200                                # 120min
+    on-timeout = systemctl suspend                # suspend pc
+}
+{% else %}
 listener {
     timeout = 1800                                # 30min
     on-timeout = systemctl suspend                # suspend pc
 }
+{% endif %}
