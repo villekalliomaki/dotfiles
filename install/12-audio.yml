@@ -1,0 +1,18 @@
+- name: Audio patches
+  hosts: localhost
+
+  tasks:
+      - name: Proritize HDMI audio on elwell
+        when: ansible_hostname == "elwell"
+        become: true
+        ansible.builtin.copy:
+            src: ../configs/prefer_hdmi_audio.conf
+            dest: /etc/wireplumber/wireplumber.conf.d/52-set-priorities.conf
+            mode: u=rw
+
+      - name: Restart (user context) wireplumber
+        when: ansible_hostname == "elwell"
+        ansible.builtin.systemd_service:
+            name: wireplumber
+            state: restarted
+            scope: user
