@@ -1,0 +1,36 @@
+- name: Power management
+  hosts: localhost
+
+  vars:
+      laptop_hostnames: ["rend"]
+
+  tasks:
+      - name: Laptop specific power management packages
+        when: ansible_hostname in laptop_hostnames
+        become: true
+        community.general.pacman:
+            package:
+                - tlp
+
+      - name: Enable TLP
+        when: ansible_hostname in laptop_hostnames
+        become: true
+        ansible.builtin.systemd:
+            service: tlp.service
+            state: started
+            enabled: true
+
+      - name: Disable conflicting rfkill service
+        when: ansible_hostname in laptop_hostnames
+        become: true
+        ansible.builtin.systemd:
+            service: systemd-rfkill.service
+            state: stopped
+            masked: true
+
+      - name: Disable conflicting rfkill socket
+        when: ansible_hostname in laptop_hostnames
+        become: true
+        ansible.builtin.systemd:
+            service: systemd-rfkill.socket
+            masked: true
