@@ -1,0 +1,16 @@
+- name: Install and configure firewall
+  hosts: localhost
+
+  tasks:
+      - name: Install ufw
+        become: true
+        community.general.pacman:
+            package:
+                - ufw
+
+      - name: Enable ufw with defaults
+        become: true
+        ansible.builtin.systemd:
+            service: ufw
+            state: started
+            enabled: true

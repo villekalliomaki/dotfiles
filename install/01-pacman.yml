@@ -20,3 +20,9 @@
                 - wl-clipboard
                 - imv
                 - vlc
+                - pacman-contrib
+
+      - name: Enable paccache
+        ansible.builtin.systemd:
+            service: paccache.service
+            enabled: true
