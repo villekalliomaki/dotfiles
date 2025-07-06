@@ -1,0 +1,36 @@
+#
+# Playbook generated using installation/run_all.yml
+#
+- name: Run all defined playbooks in order
+  hosts: localhost
+
+- name: "Run file: ../00-ansible.yml"
+  ansible.builtin.import_playbook: "../00-ansible.yml"
+- name: "Run file: ../01-pacman.yml"
+  ansible.builtin.import_playbook: "../01-pacman.yml"
+- name: "Run file: ../02-aur.yml"
+  ansible.builtin.import_playbook: "../02-aur.yml"
+- name: "Run file: ../03-syncthing.yml"
+  ansible.builtin.import_playbook: "../03-syncthing.yml"
+- name: "Run file: ../04-shell.yml"
+  ansible.builtin.import_playbook: "../04-shell.yml"
+- name: "Run file: ../05-ca.yml"
+  ansible.builtin.import_playbook: "../05-ca.yml"
+- name: "Run file: ../06-ssh.yml"
+  ansible.builtin.import_playbook: "../06-ssh.yml"
+- name: "Run file: ../07-desktop.yml"
+  ansible.builtin.import_playbook: "../07-desktop.yml"
+- name: "Run file: ../08-wireguard.yml"
+  ansible.builtin.import_playbook: "../08-wireguard.yml"
+- name: "Run file: ../09-bluetooth.yml"
+  ansible.builtin.import_playbook: "../09-bluetooth.yml"
+- name: "Run file: ../10-git.yml"
+  ansible.builtin.import_playbook: "../10-git.yml"
+- name: "Run file: ../11-docker.yml"
+  ansible.builtin.import_playbook: "../11-docker.yml"
+- name: "Run file: ../12-audio.yml"
+  ansible.builtin.import_playbook: "../12-audio.yml"
+- name: "Run file: ../13-power.yml"
+  ansible.builtin.import_playbook: "../13-power.yml"
+- name: "Run file: ../14-firewall.yml"
+  ansible.builtin.import_playbook: "../14-firewall.yml"

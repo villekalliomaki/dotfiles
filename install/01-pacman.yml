@@ -21,6 +21,7 @@
                 - imv
                 - vlc
                 - pacman-contrib
+                - tree
 
       - name: Enable paccache
         ansible.builtin.systemd:

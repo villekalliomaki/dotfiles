@@ -1,0 +1,10 @@
+#
+# Playbook generated using installation/run_all.yml
+#
+- name: Run all defined playbooks in order
+  hosts: localhost
+
+{% for file_name in playbook_files %}
+- name: "Run file: {{ file_name }}"
+  ansible.builtin.import_playbook: "{{ file_name }}"
+{% endfor %}

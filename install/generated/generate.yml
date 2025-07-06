@@ -1,0 +1,21 @@
+- name: Generate required playbooks
+  hosts: localhost
+
+  tasks:
+      - name: List all playbooks
+        register: find_playbooks
+        ansible.builtin.find:
+            path: ../
+            use_regex: true
+            pattern: '^[0-9]{2}-[a-z]+\.yml$'
+
+      - name: Register and order playbook file names
+        ansible.builtin.set_fact:
+            playbook_files: "{{ find_playbooks.files | map(attribute='path') | list | sort }}"
+
+      # Has to be done this way, because ansible-lint complains if import_playbook is used with a loop...
+      - name: Generate playbook to run all playbooks
+        ansible.builtin.template:
+            src: all_ordered.yml.j2
+            dest: all_ordered.yml
+            mode: u=rw
