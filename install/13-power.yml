@@ -9,7 +9,7 @@
         when: ansible_hostname in laptop_hostnames
         become: true
         ansible.builtin.copy:
-            src: ../configs/tlp.conf
+            src: ../config/tlp.conf
             dest: /etc/tlp.conf
             mode: a=r,o=w
 

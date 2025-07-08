@@ -36,6 +36,6 @@
 
       - name: Copy ZSH config
         ansible.builtin.copy:
-            src: ../configs/.zshrc
+            src: ../config/.zshrc
             dest: ~/.zshrc
             mode: u=rwx

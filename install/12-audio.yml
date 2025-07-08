@@ -17,7 +17,7 @@
         when: ansible_hostname == "elwell"
         become: true
         ansible.builtin.copy:
-            src: ../configs/prefer_hdmi_audio.conf
+            src: ../config/prefer_hdmi_audio.conf
             dest: "{{ config_path }}/52-set-priorities.conf"
             mode: u=rw
 
