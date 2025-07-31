@@ -7,27 +7,25 @@
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
     "modules-right": [
-        "idle_inhibitor",
-        "wireplumber",
-        "battery",
-        "backlight",
+        "group/toggles",
+        "group/desktop",
         "group/net",
         "tray"
     ],
 
-    "group/usage": {
-        "orientation": "horizontal",
-        "modules": ["memory", "temperature"]
-    },
-
-    "group/bat": {
-        "orientation": "horizontal",
-        "modules": ["battery", "backlight"]
-    },
-
     "group/net": {
         "orientation": "horizontal",
         "modules": ["network", "bluetooth"]
+    },
+
+    "group/desktop": {
+        "orientation": "horizontal",
+        "modules": ["wireplumber", "battery", "backlight"]
+    },
+
+    "group/toggles": {
+        "orientation": "horizontal",
+        "modules": ["custom/hyprsunset", "idle_inhibitor"]
     },
 
     "hyprland/workspaces": {
@@ -91,15 +89,20 @@
     },
 
     "tray": {
-        "icon-size": 16,
+        "icon-size": 18,
         "spacing": 16
     },
 
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "\udb81\udcb3",
-            "deactivated": "\udb81\udcb2"
+            "activated": " \udb81\udcb3 ",
+            "deactivated": " \udb81\udcb2 "
         }
+    },
+
+    "custom/hyprsunset": {
+        "on-click": "~/.config/hypr/hyprsunset_toggle.sh toggle",
+        "format": " \udb81\udd9b "
     }
 }

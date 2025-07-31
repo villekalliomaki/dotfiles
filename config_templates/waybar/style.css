@@ -39,14 +39,13 @@
 #tray,
 #usage,
 #net,
-#battery {
+#battery,
+#backlight,
+#network,
+#bluetooth,
+#custom-hyprsunser {
     padding-left: 0.5em;
     padding-right: 0.5em;
-}
-
-#network {
-    margin-right: 0.8em;
-    margin-left: 1em;
 }
 
 @keyframes blink {
