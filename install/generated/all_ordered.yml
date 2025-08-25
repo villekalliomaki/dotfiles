@@ -34,3 +34,5 @@
   ansible.builtin.import_playbook: "../13-power.yml"
 - name: "Run file: ../14-firewall.yml"
   ansible.builtin.import_playbook: "../14-firewall.yml"
+- name: "Run file: ../15-wireless.yml"
+  ansible.builtin.import_playbook: "../15-wireless.yml"

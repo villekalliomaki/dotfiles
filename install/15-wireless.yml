@@ -1,0 +1,37 @@
+- name: Configure wireless networking
+  hosts: localhost
+
+  tasks:
+      - name: Install iwd
+        become: true
+        community.general.pacman:
+            package:
+                - iwd
+
+      - name: Set NetworManager backend to iwd
+        become: true
+        ansible.builtin.copy:
+            dest: /etc/NetworkManager/conf.d/iwd.conf
+            content: |
+                [device]
+                wifi.backend=iwd
+            mode: u=rw
+
+      - name: Stop NetworManager
+        become: true
+        ansible.builtin.systemd:
+            service: NetworManager
+            state: stopped
+
+      - name: Disable wpa_supplicant
+        become: true
+        ansible.builtin.systemd:
+            service: wpa_supplicant
+            state: stopped
+            enabled: false
+
+      - name: Start NetworManager
+        become: true
+        ansible.builtin.systemd:
+            service: NetworManager
+            state: started

@@ -34,6 +34,12 @@
     color: @background;
 }
 
+#window {
+    padding-left: 0.5em;
+    padding-right: 3em;
+    color: @foreground-inactive;
+}
+
 #wireplumber,
 #bat,
 #tray,
@@ -44,6 +50,8 @@
 #network,
 #bluetooth,
 #temperature,
+#cpu,
+#memory,
 #custom-hyprsunser {
     padding-left: 0.5em;
     padding-right: 0.5em;
@@ -51,15 +59,24 @@
 
 @keyframes blink {
     to {
-        color: black;
-        background-color: red;
+        color: red;
     }
 }
 
-#battery.critical {
+#battery.critical,
+#cpu.critical,
+#temperature.critical,
+#memory.critical {
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
+}
+
+#battery.low,
+#cpu.high,
+#temperature.high,
+#memory.high {
+    color: orange;
 }
