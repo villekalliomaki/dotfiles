@@ -20,7 +20,7 @@
 
     "group/desktop": {
         "orientation": "horizontal",
-        "modules": ["wireplumber", "battery", "backlight"]
+        "modules": ["wireplumber", "battery", "backlight", "temperature"]
     },
 
     "group/toggles": {
@@ -100,9 +100,11 @@
             "deactivated": " \udb81\udcb2 "
         }
     },
-
     "custom/hyprsunset": {
         "on-click": "~/.config/hypr/hyprsunset_toggle.sh toggle",
         "format": " \udb81\udd9b "
+    },
+    "temperature": {
+        "format": "\uef2b {temperatureC}°C"
     }
 }
