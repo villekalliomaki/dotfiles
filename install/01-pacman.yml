@@ -22,6 +22,7 @@
                 - vlc
                 - pacman-contrib
                 - tree
+                - virt-manager
 
       - name: Enable paccache
         ansible.builtin.systemd:
