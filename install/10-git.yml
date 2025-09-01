@@ -6,3 +6,4 @@
         community.general.git_config:
             name: user.name
             value: villekalliomaki
+            scope: global

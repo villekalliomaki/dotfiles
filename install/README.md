@@ -23,7 +23,7 @@
    7. Connect with password: `station wlan0 connect UniFi`
    8. Ctrl+C and test with `ping 1.1.1.1`
 5. Syncronize clock: `timedatectl`
-6. Update system
+6. Optionally update system, **ONLY if LUKS setup fails**
    1. Run: `pacman -Suy`
    2. If not enought space: `mount -o remount,size=4G /run/archiso/cowspace`
 7. Run: `archinstall`
