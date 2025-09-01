@@ -23,6 +23,8 @@
                 - pacman-contrib
                 - tree
                 - virt-manager
+                - linux-headers
+                - linux-lts-headers
 
       - name: Enable paccache
         ansible.builtin.systemd:

@@ -11,20 +11,20 @@
             name: "{{ ansible_user_id }}"
             shell: /bin/zsh
 
-      - name: Check if ~/.oh-my-zsh exists
+      - name: Make sure ~/.oh-my-zsh exists
         ansible.builtin.stat:
-            path: ~/.oh-my-zsh exists
+            path: ~/.oh-my-zsh
         register: ohmyzsh_repository
 
       - name: Download ohmyzsh install script
-        when: ohmyzsh_repository.stat.isdir is defined and ohmyzsh_repository.stat.isdir
+        when: not ohmyzsh_repository.stat.exists
         ansible.builtin.get_url:
             url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
             dest: "{{ ohmyzsh_script_path }}"
             mode: "0755"
 
       - name: Install ohmyzsh
-        when: ohmyzsh_repository.stat.isdir is defined and ohmyzsh_repository.stat.isdir
+        when: not ohmyzsh_repository.stat.exists
         ansible.builtin.script:
             cmd: "{{ ohmyzsh_script_path }}"
 

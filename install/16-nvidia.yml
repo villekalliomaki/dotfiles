@@ -1,0 +1,14 @@
+- name: Install desktop configs
+  hosts: localhost
+
+  vars:
+      nvidia_hostnames: ["huron"]
+
+  tasks:
+      - name: Install NVIDIA related packages
+        when: ansible_hostname in nvidia_hostnames
+        become: true
+        community.general.pacman:
+            package:
+                - nvidia-utils
+                - egl-wayland
