@@ -1,14 +1,19 @@
 - name: Configure wireless networking
   hosts: localhost
 
+  vars:
+      laptop_hostnames: ["rend"]
+
   tasks:
       - name: Install iwd
+        when: ansible_hostname in laptop_hostnames
         become: true
         community.general.pacman:
             package:
                 - iwd
 
       - name: Set NetworManager backend to iwd
+        when: ansible_hostname in laptop_hostnames
         become: true
         ansible.builtin.copy:
             dest: /etc/NetworkManager/conf.d/iwd.conf
@@ -18,12 +23,14 @@
             mode: u=rw
 
       - name: Stop NetworManager
+        when: ansible_hostname in laptop_hostnames
         become: true
         ansible.builtin.systemd:
             service: NetworManager
             state: stopped
 
       - name: Disable wpa_supplicant
+        when: ansible_hostname in laptop_hostnames
         become: true
         ansible.builtin.systemd:
             service: wpa_supplicant
@@ -31,6 +38,7 @@
             enabled: false
 
       - name: Start NetworManager
+        when: ansible_hostname in laptop_hostnames
         become: true
         ansible.builtin.systemd:
             service: NetworManager
