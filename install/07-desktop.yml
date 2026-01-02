@@ -43,6 +43,7 @@
                 - hypridle
                 - hyprlock
                 - hyprsunset
+                - hyprlauncher
                 - brightnessctl
 
       - name: Change systemd power button to suspend
