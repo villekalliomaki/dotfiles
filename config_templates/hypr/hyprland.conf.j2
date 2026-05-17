@@ -188,10 +188,10 @@ windowrule {
 }
 
 # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-dwindle {
-    pseudotile = true # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-    preserve_split = true # You probably want this
-}
+#dwindle {
+#    pseudotile = true # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+#    preserve_split = true # You probably want this
+#}
 
 # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
 master {
@@ -254,8 +254,8 @@ bind = $mainMod, E, exec, $fileManager
 bind = $mainMod, SPACE, togglefloating,
 bind = $mainMod, Z, exec, $menu
 bind = $mainMod, P, pseudo, # dwindle
-bind = $mainMod, J, togglesplit, # dwindle
-bind = $mainMod, T, togglegroup # windows groups
+#bind = $mainMod, J, togglesplit, # dwindle
+#bind = $mainMod, T, togglegroup # windows groups
 bind = $mainMod, L, exec,$lock
 
 # Move focus with mainMod + arrow keys
